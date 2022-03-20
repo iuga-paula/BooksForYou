@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/helloFragment">
+
+    <fragment
+        android:id="@+id/helloFragment"
+        android:name="com.android.example.booksforyou.navigation.HelloFragment"
+        android:label="@string/startYourJourney"
+        tools:layout="@layout/fragment_hello" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.android.example.booksforyou.navigation.Settings"
+        android:label="@string/Settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/seeWhatOthersAreCurrentlyReading"
+        android:name="com.android.example.booksforyou.navigation.SeeWhatOthersAreCurrentlyReading"
+        android:label="@string/SeeWhatOthers"
+        tools:layout="@layout/fragment_see_what_others_are_currently_reading" />
+    <fragment
+        android:id="@+id/yourAccount"
+        android:name="com.android.example.booksforyou.navigation.YourAccount"
+        android:label="@string/your_account"
+        tools:layout="@layout/fragment_your_account" />
+    <fragment
+        android:id="@+id/yourBooks"
+        android:name="com.android.example.booksforyou.navigation.YourBooks"
+        android:label="@string/your_books"
+        tools:layout="@layout/fragment_your_books" />
+    <fragment
+        android:id="@+id/wishlist2"
+        android:name="com.android.example.booksforyou.navigation.Wishlist"
+        android:label="Wishlist" />
+</navigation>
