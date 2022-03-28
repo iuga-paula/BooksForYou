@@ -32,7 +32,7 @@
     <string name="search_for_a_book">Search for a book</string>
     <string name="currently_reading">Currently reading:</string>
     <string name="book_wishlist_icon">book wishlist icon</string>
-    <string name="book_cover">book cover</string>
+    <string name="book_cover">Book cover</string>
     <string name="book_info">Started at: 10/10/2021\n Total pages: 340</string>
     <string name="author_ex">JOHN GREEN</string>
     <string name="title_ex">THE FAULT IN OUR STARS</string>
@@ -47,4 +47,19 @@
     <string name="SeeWhatOthers">See what others are reading</string>
     <string name="your_account">Your account</string>
     <string name="startYourJourney">Start your journey</string>
+    <string name="add_a_new_book_to_your_collection">Add a new book to your collection</string>
+    <string name="book_name">Book Name</string>
+    <string name="author_name">Author name</string>
+    <string name="no_book_cover_please_add_one">No book cover. Please add one.</string>
+    <string name="add_book_cover">Add book cover</string>
+    <string name="finished">Finished</string>
+    <string name="in_progress">In progress</string>
+    <string name="have_you_finished_it_already">Have you finished it already?</string>
+    <string name="when_have_you_finished_it">When have you finished it?</string>
+    <string name="when_have_you_started_it">When have you started it?</string>
+    <string name="cancel">Cancel</string>
+    <string name="save_book">Save book</string>
+    <string name="total_number_of_pages">Total number of pages</string>
+    <string name="there_are_no_read_books_yet">There are no read books yet.</string>
+    <string name="there_are_no_finished_books_yet">There are no finished books yet. Keep reading.</string>
 </resources>

@@ -9,7 +9,11 @@
         android:id="@+id/helloFragment"
         android:name="com.android.example.booksforyou.navigation.HelloFragment"
         android:label="@string/startYourJourney"
-        tools:layout="@layout/fragment_hello" />
+        tools:layout="@layout/fragment_hello" >
+        <action
+            android:id="@+id/action_helloFragment_to_yourBooks"
+            app:destination="@id/yourBooks" />
+    </fragment>
     <fragment
         android:id="@+id/settings"
         android:name="com.android.example.booksforyou.navigation.Settings"
@@ -29,9 +33,26 @@
         android:id="@+id/yourBooks"
         android:name="com.android.example.booksforyou.navigation.YourBooks"
         android:label="@string/your_books"
-        tools:layout="@layout/fragment_your_books" />
+        tools:layout="@layout/fragment_your_books" >
+        <action
+            android:id="@+id/action_yourBooks_to_addBookDialog"
+            app:destination="@id/addBookDialog" />
+        <argument
+            android:name="AddedBook"
+            app:argType="com.android.example.booksforyou.Book" />
+    </fragment>
     <fragment
         android:id="@+id/wishlist2"
         android:name="com.android.example.booksforyou.navigation.Wishlist"
         android:label="Wishlist" />
+    <fragment
+        android:id="@+id/addBookDialog"
+        android:name="com.android.example.booksforyou.navigation.AddBookDialog"
+        android:label="Add New Book">
+        <action
+            android:id="@+id/action_addBookDialog_to_yourBooks"
+            app:destination="@id/yourBooks"
+            app:popUpTo="@id/yourBooks"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

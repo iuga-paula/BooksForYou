@@ -10,8 +10,12 @@ import com.android.example.booksforyou.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
+    public lateinit var books:AllBooks
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        books = AllBooks()
+
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
         drawerLayout = binding.drawerLayout

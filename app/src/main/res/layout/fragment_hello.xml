@@ -54,6 +54,7 @@ tools:context=".navigation.HelloFragment">
                 android:layout_margin="8dp"
                 android:orientation="horizontal">
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/startJourney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
