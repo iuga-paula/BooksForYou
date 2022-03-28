@@ -62,4 +62,6 @@
     <string name="total_number_of_pages">Total number of pages</string>
     <string name="there_are_no_read_books_yet">There are no read books yet.</string>
     <string name="there_are_no_finished_books_yet">There are no finished books yet. Keep reading.</string>
+    <string name="share">Share</string>
+    <string name="observations">Observations</string>
 </resources>

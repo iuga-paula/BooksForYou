@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/books_for_you_ic_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BooksForYou">
+
         <activity
-            android:name=".MainActivity"
+            android:name="com.android.example.booksforyou.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

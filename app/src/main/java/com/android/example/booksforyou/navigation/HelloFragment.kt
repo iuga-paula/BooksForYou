@@ -1,11 +1,12 @@
 package com.android.example.booksforyou.navigation
 
 import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.android.example.booksforyou.R
 import com.android.example.booksforyou.databinding.FragmentHelloBinding
 

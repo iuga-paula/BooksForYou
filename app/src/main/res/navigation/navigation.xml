@@ -39,12 +39,16 @@
             app:destination="@id/addBookDialog" />
         <argument
             android:name="AddedBook"
-            app:argType="com.android.example.booksforyou.Book" />
+            app:argType="com.android.example.booksforyou.books.Book" />
     </fragment>
     <fragment
         android:id="@+id/wishlist2"
         android:name="com.android.example.booksforyou.navigation.Wishlist"
-        android:label="Wishlist" />
+        android:label="Wishlist" >
+        <action
+            android:id="@+id/action_wishlist2_to_addWishDialog"
+            app:destination="@id/addWishDialog" />
+    </fragment>
     <fragment
         android:id="@+id/addBookDialog"
         android:name="com.android.example.booksforyou.navigation.AddBookDialog"
@@ -53,6 +57,16 @@
             android:id="@+id/action_addBookDialog_to_yourBooks"
             app:destination="@id/yourBooks"
             app:popUpTo="@id/yourBooks"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addWishDialog"
+        android:name="com.android.example.booksforyou.navigation.AddWishDialog"
+        android:label="AddWishDialog" >
+        <action
+            android:id="@+id/action_addWishDialog_to_wishlist2"
+            app:destination="@id/wishlist2"
+            app:popUpTo="@id/wishlist2"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

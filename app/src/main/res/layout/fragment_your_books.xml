@@ -27,18 +27,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:text="@string/currently_reading"
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="20dp"
-                    android:text="@string/currently_reading"
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
 
-                    <GridView
+                    <com.android.example.booksforyou.views.ExpandableHeightGridView
                         android:id="@+id/in_progress_books"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:verticalSpacing="5dp"
-                        android:horizontalSpacing="5dp"
+                        android:verticalSpacing="20dp"
+                        android:horizontalSpacing="20dp"
                         android:numColumns="1" /> <!--Change with 2 for landscape mode-->
 
                 <!--Grid items can only be inserted in code-->
@@ -55,6 +55,10 @@
 
 
 
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"/>
 
                 <TextView
                     android:id="@+id/books_read"
@@ -66,12 +70,12 @@
                     android:text="@string/books_read_so_far"
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
-                    <GridView
+                    <com.android.example.booksforyou.views.ExpandableHeightGridView
                         android:id="@+id/finished_books"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:verticalSpacing="5dp"
-                        android:horizontalSpacing="5dp"
+                        android:verticalSpacing="20dp"
+                        android:horizontalSpacing="20dp"
                         android:numColumns="1" /> <!--Change with 2 for landscape mode-->
 
                 <!--Grid items can only be inserted in code-->

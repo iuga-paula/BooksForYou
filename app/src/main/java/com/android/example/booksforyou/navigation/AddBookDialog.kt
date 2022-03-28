@@ -2,9 +2,7 @@ package com.android.example.booksforyou.navigation
 
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
-import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -14,24 +12,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.android.example.booksforyou.Book
 import com.android.example.booksforyou.MainActivity
 import com.android.example.booksforyou.R
+import com.android.example.booksforyou.books.Book
 import com.android.example.booksforyou.databinding.FragmentAddBookDialogBinding
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 
 
 class AddBookDialog : Fragment() {

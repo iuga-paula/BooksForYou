@@ -9,28 +9,24 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.android.example.booksforyou.MainActivity
 import com.android.example.booksforyou.R
+import com.android.example.booksforyou.databinding.FragmentAddBookDialogBinding
 import com.android.example.booksforyou.databinding.FragmentAddWishBinding
-import com.android.example.booksforyou.databinding.FragmentWishlistBinding
 
-
-class Wishlist : Fragment() {
-    private lateinit var binding: FragmentWishlistBinding
+class AddWishDialog: Fragment() {
+    private lateinit var binding: FragmentAddWishBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as MainActivity).supportActionBar?.hide()
         // Inflate the layout for this fragment
-        (activity as MainActivity).supportActionBar?.show()
-        // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate<FragmentWishlistBinding>(
+        binding = DataBindingUtil.inflate<FragmentAddWishBinding>(
             inflater,
-            R.layout.fragment_wishlist, container, false
+            R.layout.fragment_add_wish, container, false
         )
-        binding.addBookButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_wishlist2_to_addWishDialog)
-        }
 
-
+        binding.cancelButton.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_addWishDialog_to_wishlist2)}
 
         return binding.root
     }

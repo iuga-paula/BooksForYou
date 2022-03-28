@@ -6,7 +6,8 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/page">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,6 +66,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/finish_button"
                 style="?attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,6 +74,7 @@
                 android:text="@string/finish_reading" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/delete_button"
                 style="?attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
