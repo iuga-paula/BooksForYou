@@ -1,9 +1,7 @@
 # BooksForYou
 
 <div align="center">
-  <a href="https://github.com/SmartSleepIoT">
-    <img src="Images/LogoSample_ByTailorBrands.jpg" alt="Logo" width="200" height="200">
-  </a>
+    <img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/logo_size_invert.jpg" alt="Logo" width="200" height="200">
 </div>
   <h3 align="center">BooksForYou</h3>
 
