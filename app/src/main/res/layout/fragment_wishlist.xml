@@ -5,7 +5,7 @@
     tools:context=".navigation.Wishlist">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     >
 
     <!-- Your wishlist -->
@@ -14,31 +14,35 @@
         android:id="@+id/searchField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:hint="@string/search_for_a_book"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/wishlist"
-        app:endIconMode="custom"
         app:endIconDrawable="@drawable/ic_baseline_search_24"
-        >
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/wishlist"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/addBookButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.961"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchField"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/searchField"
+        app:layout_constraintBottom_toTopOf="@id/addBookButton"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addBookButton"

@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_wishlist2_to_addWishDialog"
             app:destination="@id/addWishDialog" />
+        <argument
+            android:name="addedWish"
+            app:argType="com.android.example.booksforyou.navigation.WishlistItemViewHolder" />
     </fragment>
     <fragment
         android:id="@+id/addBookDialog"

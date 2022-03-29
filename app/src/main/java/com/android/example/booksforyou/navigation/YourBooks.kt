@@ -39,8 +39,8 @@ class YourBooks : Fragment() {
         val bookModel = arguments?.getParcelable<Book>("newBook")
         val newBook = bookModel?.let {
             Book(
-                it.name, bookModel.authorName, bookModel.noPages,
-                bookModel.type, bookModel.date, bookModel.photoLink
+                it.name, it.authorName, it.noPages,
+                it.type, it.date, it.photoLink
             )
         }
         newBook?.let {

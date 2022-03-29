@@ -1,6 +1,7 @@
 package com.android.example.booksforyou.books
 
 import android.app.Application
+import com.android.example.booksforyou.navigation.WishlistItemViewHolder
 
 class AllBooks {
     private var finishedBooks: MutableList<Book> = mutableListOf()

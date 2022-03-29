@@ -10,9 +10,12 @@ import com.android.example.booksforyou.books.AllBooks
 import com.android.example.booksforyou.databinding.ActivityMainBinding
 import android.content.Intent
 import android.util.Log
+import com.android.example.booksforyou.navigation.Wishes
+import com.android.example.booksforyou.navigation.WishlistItemViewHolder
 
 
- var books: AllBooks = AllBooks()
+var books: AllBooks = AllBooks()
+var wishlist: Wishes = Wishes()
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
