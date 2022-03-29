@@ -4,7 +4,7 @@
   <a href="https://github.com/SmartSleepIoT">
     <img src="Images/LogoSample_ByTailorBrands.jpg" alt="Logo" width="200" height="200">
   </a>
-
+</div>
   <h3 align="center">BooksForYou</h3>
 
   <p align="center">
@@ -17,7 +17,7 @@ Major frameworks/libraries used to bootstrap BooksForYou project:
 * [Firebase]()
 * [Room]()
   
-  ### Roadmap
+### Roadmap
   - [x] drawer navigation
   - [x] add book/wish]
   - [x] take a picture for book cover
@@ -32,6 +32,6 @@ Major frameworks/libraries used to bootstrap BooksForYou project:
   - [] UI for landscape mode
 
   
-  ### ScreenShots
+### ScreenShots
   
   
