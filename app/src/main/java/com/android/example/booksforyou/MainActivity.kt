@@ -17,6 +17,9 @@ import android.util.Log
 import androidx.multidex.MultiDex
 import com.android.example.booksforyou.firebaseNotifications.FirebaseNotifications
 import com.android.example.booksforyou.navigation.Wishes
+import com.facebook.CallbackManager
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 
@@ -24,6 +27,9 @@ import com.google.firebase.messaging.FirebaseMessaging
 var books: AllBooks = AllBooks()
 var wishlist: Wishes = Wishes()
 var notifications: FirebaseNotifications = FirebaseNotifications()
+var callbackManager = CallbackManager.Factory.create();
+var userId: String? = null
+var userName: String? = null
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -34,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
         drawerLayout = binding.drawerLayout
+        FacebookSdk.sdkInitialize(applicationContext);
+        AppEventsLogger.activateApp(application);
 
         val navController = this.findNavController(R.id.myNavHostFragment)
 

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<!-- Your account -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".navigation.YourAccount">
+<!-- Your account -->
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="88dp"
-
-    tools:context=".navigation.YourAccount">
+    android:minHeight="88dp">
 
     <TextView
         android:id="@+id/hello_user_text"
@@ -17,6 +18,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="35dp"
         android:text="@string/hello_user"
+        android:visibility="gone"
         android:textAppearance="?attr/textAppearanceHeadline3" />
 
     <LinearLayout
@@ -32,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="35dp"
-            android:text="@string/current_account"
+            android:text="@string/no_account"
             android:textAppearance="?attr/textAppearanceHeadline5" />
 
         <TextView
@@ -42,18 +44,21 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="35dp"
             android:text="@string/user_account"
+            android:visibility="gone"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textStyle="italic" />
     </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/account_layout"
         android:layout_marginStart="5dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/change_account" />
+        android:text="@string/connect" />
 
 
 </RelativeLayout>
+</layout>

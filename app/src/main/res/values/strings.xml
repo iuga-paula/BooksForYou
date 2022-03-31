@@ -19,7 +19,7 @@
     <string name="hello_user">Hello, user!</string>
     <string name="user_account">user@gmail.com</string>
     <string name="current_account"><![CDATA[Current account:]]></string>
-    <string name="change_account">Change account</string>
+    <string name="change_account">You can change account here:</string>
     <string name="userName1">Antonia Alexandra</string>
     <string name="userName2">Alexandru Lepadatu</string>
     <string name="userName3">Miruna Daian</string>
@@ -66,4 +66,9 @@
     <string name="observations">Observations</string>
     <string name="disable_reminders">Disable reminders</string>
     <string name="enable_reminders">Enable reminders</string>
+    <string name="no_account">There is no Facebook account connected to this app yet.</string>
+    <string name="connect">Connect</string>
+    <string name="facebook_app_id">521106366123627</string>
+    <string name="fb_login_protocol_scheme">fb521106366123627</string>
+    <string name="facebook_client_token">b9fe4ee22082b22ac570881aa2d1914f</string>
 </resources>

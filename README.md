@@ -23,9 +23,9 @@ Major frameworks/libraries used to bootstrap BooksForYou project:
   - [x] share currently reading books
   - [x] recycle view for wishlist page
   - [x] seach for a wish
-  - [x] subscribe/unsubcribe for reminders on different chanels: Reading,Buying
+  - [x] subscribe/unsubcribe for reminders on different chanels: Reading, Buying
   - [x] firebase notifications with deep links for reminders
-  - [ ] add social login - Gmail
+  - [x] add social login - Facebook and update account page
   - [ ] Room database
   - [ ] UI for landscape mode
 
