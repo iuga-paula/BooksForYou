@@ -11,10 +11,10 @@
     <string name="reminderBody">Never forget about reading or buying new books. We will remind you about everything.</string>
     <string name="addReminder">Add new reminder</string>
     <string name="currentReminders">Current reminders</string>
-    <string name="readReminder">Read 10 pages - every day 8 p.m.</string>
+    <string name="readReminder">Reading reminder - every day</string>
     <string name="secondaryListTextReading">Reading</string>
     <string name="notificationsicon">NotificationsIcon</string>
-    <string name="buyReminder">Buy Hamnet - tomorrow 10 a.m.</string>
+    <string name="buyReminder">Get new books reminder - every Sunday</string>
     <string name="ListTextBuying">Buying</string>
     <string name="hello_user">Hello, user!</string>
     <string name="user_account">user@gmail.com</string>
@@ -64,4 +64,6 @@
     <string name="there_are_no_finished_books_yet">There are no finished books yet. Keep reading.</string>
     <string name="share">Share</string>
     <string name="observations">Observations</string>
+    <string name="disable_reminders">Disable reminders</string>
+    <string name="enable_reminders">Enable reminders</string>
 </resources>

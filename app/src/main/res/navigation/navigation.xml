@@ -33,13 +33,17 @@
         android:id="@+id/yourBooks"
         android:name="com.android.example.booksforyou.navigation.YourBooks"
         android:label="@string/your_books"
-        tools:layout="@layout/fragment_your_books" >
+        tools:layout="@layout/fragment_your_books">
         <action
             android:id="@+id/action_yourBooks_to_addBookDialog"
             app:destination="@id/addBookDialog" />
         <argument
             android:name="AddedBook"
             app:argType="com.android.example.booksforyou.books.Book" />
+        <deepLink
+            android:id="@+id/deepLink"
+            android:autoVerify="true"
+            app:uri="www.android.example.booksforyou.yourBooks" />
     </fragment>
     <fragment
         android:id="@+id/wishlist2"

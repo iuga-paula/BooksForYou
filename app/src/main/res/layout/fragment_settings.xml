@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Set a reminder -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".navigation.Settings">
+
+<!-- Set a reminder -->
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".navigation.Settings">
+    android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
@@ -31,7 +33,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/AddReminderTitle"
+                    android:text="@string/currentReminders"
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <TextView
@@ -52,30 +54,22 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/handle_reminders"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="@string/addReminder" />
+                    android:text="@string/disable_reminders" />
             </LinearLayout>
 
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:id="@+id/mar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/currentReminders"
-        android:textAppearance="?attr/textAppearanceHeadline6" />
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,31 +105,15 @@
                     android:textColor="?attr/colorOnSurface"
                     tools:ignore="RtlSymmetry" />
 
-                <TextView
-                    android:id="@+id/mtrl_list_item_secondary_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mtrl_list_item_text"
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/reading_reminder_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:checked="true"
                     android:layout_gravity="center_vertical"
-                    android:layout_toEndOf="@id/mtrl_list_item_icon"
-                    android:maxLines="1"
-                    android:paddingEnd="16dp"
-                    android:text="@string/secondaryListTextReading"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?attr/colorOnSurface"
-                    tools:ignore="RtlSymmetry" />
+                    android:layout_below="@+id/mtrl_list_item_text"
+                    android:layout_toEndOf="@id/mtrl_list_item_icon"/>
 
-                <com.google.android.material.button.MaterialButton
-                    style="?attr/borderlessButtonStyle"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mtrl_list_item_secondary_text"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="113dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_toEndOf="@id/mtrl_list_item_icon"
-                    app:icon="@drawable/ic_baseline_delete_24"
-                    tools:ignore="SpeakableTextPresentCheck" />
 
             </RelativeLayout>
 
@@ -168,90 +146,18 @@
                     android:textColor="?attr/colorOnSurface"
                     tools:ignore="RtlSymmetry" />
 
-                <TextView
-                    android:id="@+id/mtrl_list_item_secondary_text2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mtrl_list_item_text2"
-                    android:layout_gravity="center_vertical"
-                    android:layout_toEndOf="@id/mtrl_list_item_icon2"
-                    android:maxLines="1"
-                    android:paddingEnd="16dp"
-                    android:text="@string/ListTextBuying"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?attr/colorOnSurface"
-                    tools:ignore="RtlSymmetry" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="?attr/borderlessButtonStyle"
-                    android:layout_width="52dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mtrl_list_item_secondary_text2"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="113dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_toEndOf="@id/mtrl_list_item_icon2"
-                    app:icon="@drawable/ic_baseline_delete_24"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:minHeight="88dp">
-
-                <ImageView
-                    android:id="@+id/mtrl_list_item_icon3"
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/buying_reminder_switch"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:contentDescription="@string/notificationsicon"
-                    android:padding="16dp"
-                    app:srcCompat="@drawable/ic_baseline_notifications_active_24" />
-
-                <TextView
-                    android:id="@+id/mtrl_list_item_text3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:checked="true"
                     android:layout_gravity="center_vertical"
-                    android:layout_toEndOf="@id/mtrl_list_item_icon3"
-                    android:maxLines="1"
-                    android:paddingTop="16dp"
-                    android:paddingEnd="16dp"
-                    android:text="@string/readReminder"
-                    android:textAppearance="?attr/textAppearanceSubtitle1"
-                    android:textColor="?attr/colorOnSurface"
-                    tools:ignore="RtlSymmetry" />
+                    android:layout_below="@+id/mtrl_list_item_text2"
+                    android:layout_toEndOf="@id/mtrl_list_item_icon2"/>
 
-                <TextView
-                    android:id="@+id/mtrl_list_item_secondary_text3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mtrl_list_item_text3"
-                    android:layout_gravity="center_vertical"
-                    android:layout_toEndOf="@id/mtrl_list_item_icon3"
-                    android:maxLines="1"
-                    android:paddingEnd="16dp"
-                    android:text="@string/secondaryListTextReading"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?attr/colorOnSurface"
-                    tools:ignore="RtlSymmetry" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="?attr/borderlessButtonStyle"
-                    android:layout_width="56dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mtrl_list_item_secondary_text3"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="113dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_toEndOf="@id/mtrl_list_item_icon3"
-                    app:icon="@drawable/ic_baseline_delete_24"
-                    tools:ignore="SpeakableTextPresentCheck" />
 
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
+</layout>

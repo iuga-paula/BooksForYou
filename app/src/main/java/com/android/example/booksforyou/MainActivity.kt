@@ -1,5 +1,7 @@
 package com.android.example.booksforyou
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -9,20 +11,26 @@ import androidx.navigation.ui.NavigationUI
 import com.android.example.booksforyou.books.AllBooks
 import com.android.example.booksforyou.databinding.ActivityMainBinding
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.util.Log
+import androidx.multidex.MultiDex
+import com.android.example.booksforyou.firebaseNotifications.FirebaseNotifications
 import com.android.example.booksforyou.navigation.Wishes
-import com.android.example.booksforyou.navigation.WishlistItemViewHolder
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 
 
 var books: AllBooks = AllBooks()
 var wishlist: Wishes = Wishes()
+var notifications: FirebaseNotifications = FirebaseNotifications()
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i("Main", "reintialised books")
-
+        MultiDex.install(this)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
         drawerLayout = binding.drawerLayout
@@ -32,6 +40,31 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this,navController, drawerLayout)
 
         NavigationUI.setupWithNavController(binding.navView, navController)
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.i("FirebaseToken", "New token ${task.result}")
+            }
+        })
+
+        //create FCM Channel
+        notifications.createChannel(
+            "fcm_default_channel",
+            "Reading reminder",
+        this)
+
+        notifications.subscribeTopic("Reading")
+        notifications.subscribeTopic("Buying")
+
+
+        val intent = intent
+        val extras = intent.extras
+        extras?.let {
+            val link = it.getString("link")
+            link?.let{
+                navController.navigate(R.id.action_helloFragment_to_yourBooks)
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -43,4 +76,5 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
         finish()
     }
+
 }
