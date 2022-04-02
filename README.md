@@ -21,6 +21,7 @@ Major frameworks/libraries used to bootstrap BooksForYou project:
 * [Material.io](https://material.io/)  
 * [Facebook for dev](https://developers.facebook.com/)  
 * [Room](https://developer.android.com/jetpack/androidx/releases/room)
+* [Preview App](https://previewed.app/)
   
 ### Roadmap
   - [x] drawer navigation
@@ -39,5 +40,6 @@ Major frameworks/libraries used to bootstrap BooksForYou project:
 
   
 ### ScreenShots
+![main_page](https://github.com/iuga-paula/BooksForYou/blob/main/images/main_page.jpeg)
   
   
