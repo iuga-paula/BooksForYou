@@ -40,6 +40,35 @@ Major frameworks/libraries used to bootstrap BooksForYou project:
 
   
 ### ScreenShots
-![main_page](https://github.com/iuga-paula/BooksForYou/blob/main/images/main_page.jpeg)
-  
+#### Main page
+<div>
+<img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/main_page.jpeg" alt="main_img" width="210" height="450"> &nbsp; &nbsp;
+<img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/nav.jpeg" alt="main_img" width="210" height="450">
+ </div>
+ 
+#### Your books
+ <div>
+<img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/your_books.jpeg" alt="main_img" width="210" height="450"> &nbsp; &nbsp;
+<img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/add_book.jpeg" alt="main_img" width="210" height="450"> &nbsp; &nbsp;
+    <img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/your_books2.jpeg" alt="main_img" width="210" height="450"> &nbsp; &nbsp;
+    <img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/your_books3.jpeg" alt="main_img" width="210" height="450"> &nbsp; &nbsp;
+    <img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/finish_book.jpeg" alt="main_img" width="210" height="450">
+ </div>
+ 
+#### Wishlist
+  <div>
+<img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/wishlist.jpeg" alt="main_img" width="210" height="450">
+ </div>
+ 
+#### Reminders settings && facebook login
+  <div>
+<img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/reminders.jpeg" alt="main_img" width="210" height="450"> &nbsp; &nbsp;
+    <img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/facebook_account.jpeg" alt="main_img" width="210" height="450">
+ </div>
+ 
+#### Notifications
+ <div>
+<img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/notification.jpeg" alt="main_img" width="210" height="450"> &nbsp; &nbsp;
+<img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/notification2.jpeg" alt="main_img" width="210" height="450">
+ </div>
   
