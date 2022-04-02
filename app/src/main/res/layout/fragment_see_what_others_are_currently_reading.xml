@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<!-- What your friends are reading -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- NYT Best sellers -->
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".navigation.SeeWhatOthersAreCurrentlyReading">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.android.example.booksforyou.navigation.OverViewModel" />
+    </data>
+
+
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".navigation.SeeWhatOthersAreCurrentlyReading">>
+   >
 
     <TextView
         android:id="@+id/title"
@@ -17,96 +27,38 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
-        android:text="@string/inspo_text"
+        android:text="@string/current_week_s_new_york_times_best_sellers"
         android:textAppearance="?attr/textAppearanceHeadline6" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/photos_grid"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:padding="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:spanCount="2"
+            tools:itemCount="10"
+            app:listData="@{viewModel.results}"
+            tools:listitem="@layout/nyt_book_layout"
+             />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:minHeight="88dp">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/userName1"
-                    app:chipIcon="@drawable/ic_baseline_person_pin_24" />
-
-                <TextView
-                    android:id="@+id/books"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@id/chip"
-                    android:text="@string/books1"
-                    android:textAppearance="?attr/textAppearanceSubtitle1"
-                    android:textColor="?attr/colorOnSurface" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:minHeight="88dp">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/userName2"
-                    app:chipIcon="@drawable/ic_baseline_person_pin_24" />
-
-                <TextView
-                    android:id="@+id/books2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@id/chip2"
-                    android:text="@string/books2"
-                    android:textAppearance="?attr/textAppearanceSubtitle1"
-                    android:textColor="?attr/colorOnSurface" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:minHeight="88dp">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/userName3"
-                    app:chipIcon="@drawable/ic_baseline_person_pin_24" />
-
-                <TextView
-                    android:id="@+id/books3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@id/chip3"
-                    android:text="@string/books3"
-                    android:textAppearance="?attr/textAppearanceSubtitle1"
-                    android:textColor="?attr/colorOnSurface" />
-            </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.status}"
+            android:layout_gravity="center_horizontal"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
-
+</layout>

@@ -4,6 +4,7 @@ plugins {
    // id "kotlinx-serialization"
     id 'org.jetbrains.kotlin.android.extensions'
     id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -81,6 +82,18 @@ dependencies {
 
     // facebook login
     implementation 'com.facebook.android:facebook-login:latest.release'
+
+    // Moshi
+    implementation 'com.squareup.moshi:moshi-kotlin:1.9.3'
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    // Retrofit with Moshi Converter
+    implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
+    implementation "com.squareup.retrofit2:converter-scalars:2.9.0"
+
+    // Coil
+    implementation "io.coil-kt:coil:1.1.1"
 
     //implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
 

@@ -8,12 +8,19 @@
   <p align="center">
     An android app that lets you keep track of what you are currently reading, your book wishlists and what your friends are reading </p>
   
-  ### Built With
+
+### Built With
 
 Major frameworks/libraries used to bootstrap BooksForYou project:
-* [Kotlin]()
-* [Firebase]()
-* [Room]()
+* [Kotlin](https://kotlinlang.org/)
+* [Firebase cloud messaging](https://firebase.google.com/docs/cloud-messaging)
+* [Moshi](https://github.com/square/moshi)
+* [Retrofit](https://square.github.io/retrofit/)
+* [NYTimes Books Api](https://developer.nytimes.com/docs/books-product/1/routes/lists/overview.json/get)  
+* [Coil](https://github.com/coil-kt/coil)
+* [Material.io](https://material.io/)  
+* [Facebook for dev](https://developers.facebook.com/)  
+* [Room](https://developer.android.com/jetpack/androidx/releases/room)
   
 ### Roadmap
   - [x] drawer navigation
@@ -26,6 +33,7 @@ Major frameworks/libraries used to bootstrap BooksForYou project:
   - [x] subscribe/unsubcribe for reminders on different chanels: Reading, Buying
   - [x] firebase notifications with deep links for reminders
   - [x] add social login - Facebook and update account page
+  - [x] added current weeks' best seller books using Books Api from NYTimes, Retrofit and Moshi
   - [ ] Room database
   - [ ] UI for landscape mode
 
