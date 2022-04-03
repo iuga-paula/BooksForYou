@@ -16,10 +16,13 @@ import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.android.example.booksforyou.MainActivity
 import com.android.example.booksforyou.R
 import com.android.example.booksforyou.books.Book
+import com.android.example.booksforyou.books.BookViewModel
+import com.android.example.booksforyou.database.BooksApplication
 import com.android.example.booksforyou.databinding.FragmentAddBookDialogBinding
 import java.io.File
 import java.io.IOException
@@ -30,6 +33,11 @@ import java.util.*
 class AddBookDialog : Fragment() {
     private lateinit var binding: FragmentAddBookDialogBinding
     private  var currentPhotoPath =  ""
+    private val viewModel: BookViewModel by activityViewModels {
+       BookViewModel.BookViewModelFactory(
+            (activity?.application as BooksApplication).booksDatabase.databaseDao
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -119,6 +127,7 @@ class AddBookDialog : Fragment() {
             val bundle = Bundle()
             bundle.putParcelable("newBook", newBook)
 
+            viewModel.addNewBook(bookName, author, noPages, bookTypeId, bookDate, currentPhotoPath)
             view.findNavController().navigate(R.id.action_addBookDialog_to_yourBooks, bundle)
         }
     }

@@ -1,6 +1,7 @@
 package com.android.example.booksforyou.books
 
 import android.app.Application
+import com.android.example.booksforyou.database.UserBooks
 import com.android.example.booksforyou.navigation.WishlistItemViewHolder
 
 class AllBooks {
@@ -11,12 +12,18 @@ class AllBooks {
         return finishedBooks
     }
 
-    fun setFinishedBooks(newList: MutableList<Book>) {
-        finishedBooks = newList
+    fun setFinishedBooks(newList: MutableList<UserBooks>) {
+        finishedBooks = mutableListOf()
+        for(b in newList) {
+            finishedBooks.add(Book(b.bookName, b.bookAuthor, b.noPages, b.type, b.bookDate, b.photoLink))
+        }
     }
 
-    fun setInProgressBooks(newList: MutableList<Book>) {
-        inProgressBooks = newList
+    fun setInProgressBooks(newList: MutableList<UserBooks>) {
+        inProgressBooks = mutableListOf()
+        for(b in newList) {
+        inProgressBooks.add(Book(b.bookName, b.bookAuthor, b.noPages, b.type, b.bookDate, b.photoLink))
+        }
     }
 
     fun getInProgressBooks(): MutableList<Book> {

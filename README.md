@@ -35,8 +35,8 @@ Major frameworks/libraries used to bootstrap BooksForYou project:
   - [x] firebase notifications with deep links for reminders
   - [x] add social login - Facebook and update account page
   - [x] added current weeks' best seller books using Books Api from NYTimes, Retrofit and Moshi
-  - [ ] Room database
-  - [ ] UI for landscape mode
+  - [x] Room database
+  - [x] UI for landscape mode
 
   
 ### ScreenShots

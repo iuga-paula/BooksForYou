@@ -1,10 +1,12 @@
 package com.android.example.booksforyou.navigation
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +30,7 @@ class Wishlist : Fragment() {
             ((activity as MainActivity).application as BooksApplication).booksDatabase.databaseDao
         )
     }
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,22 +49,32 @@ class Wishlist : Fragment() {
         context?.let { hideKeyboard(it) }
 
         val addedWish = arguments?.getParcelable<WishlistItemViewHolder>("newWish")
-        val newWish = addedWish?.let {
+        /*val newWish = addedWish?.let {
             WishlistItemViewHolder(it.bookInfo, it.obs)
         }
-//        newWish?.let{
-//            wishlist.addWish(it)
-//        }
-
+        newWish?.let{
+           wishlist.addWish(it)
+      }*/
 
         val recicleView = binding.wishlist
+        var adapter = WishlistAdapter(wishlist.getWishes(), viewModel)
+        recicleView.adapter = adapter
+
         viewModel.allItems.observe(this.viewLifecycleOwner) { items ->
             items.let {
                 wishlist.resetWishes(it)
+                var msg = ""
+                for(w in it) {
+                    msg += "(${w.bookInfo}, ${w.obs}) "
+                }
+                Log.i("Wishlist", "Changed data: $msg")
+                //adapter.submitList(wishlist.getWishes())
+                //adapter.notifyDataSetChanged()
+                adapter = WishlistAdapter(wishlist.getWishes(), viewModel)
+                recicleView.adapter = adapter
             }
         }
-        val adapter = WishlistAdapter(wishlist.getWishes(), viewModel)
-        recicleView.adapter = adapter
+
 
 
         binding.searchText.addTextChangedListener(object : TextWatcher {

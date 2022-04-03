@@ -6,14 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.android.example.booksforyou.MainActivity
 import com.android.example.booksforyou.R
+import com.android.example.booksforyou.dao
+import com.android.example.booksforyou.database.BooksApplication
+import com.android.example.booksforyou.database.BooksForYouDao
 import com.android.example.booksforyou.databinding.FragmentSettingsBinding
-import com.android.example.booksforyou.databinding.FragmentWishlistBinding
-import com.android.example.booksforyou.databinding.FragmentYourBooksBinding
 import com.android.example.booksforyou.notifications
+import kotlinx.coroutines.launch
 
 class Settings : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,48 +32,49 @@ class Settings : Fragment() {
         val readingReminder = binding.readingReminderSwitch
         val buyingReminder = binding.buyingReminderSwitch
 
-//        val lastSettings = booksDao?.getSetting()
-//        if (lastSettings != null) {
-//            readingReminder.isChecked = lastSettings.readingReminders
-//            buyingReminder.isChecked = lastSettings.buyingReminders
-//        }
+        lifecycleScope.launch {
+            val currentSetting = dao.getSetting()
+            readingReminder.isChecked = currentSetting.readingReminders
+            buyingReminder.isChecked = currentSetting.buyingReminders
+        }
 
         binding.handleReminders.setOnClickListener {
             if(binding.handleReminders.text == getString(R.string.enable_reminders)) {
                 if (!readingReminder.isChecked) {
                     readingReminder.isChecked = true
                     notifications.subscribeTopic("Reading")
-//                    if (lastSettings != null) {
-//                        lastSettings.readingReminders = true
-//                        booksDao?.updateSetting(lastSettings)
-//                    }
+                    //update reminder from db
+                    lifecycleScope.launch {
+                        dao.updateReadingReminder(true)
+                    }
+
                 }
                 if (!buyingReminder.isChecked) {
                     buyingReminder.isChecked = true
                     notifications.subscribeTopic("Buying")
-//                    if (lastSettings != null) {
-//                        lastSettings.buyingReminders = true
-//                        booksDao?.updateSetting(lastSettings)
-//                    }
+                    //update reminder from db
+                    lifecycleScope.launch {
+                        dao.updateBuyingReminder(true)
+                    }
                 }
                 binding.handleReminders.text = getString(R.string.disable_reminders)
             }
-            else { //diable reminders
+            else { //disable reminders
                 if (readingReminder.isChecked) {
                     readingReminder.isChecked = false
                     notifications.unsubscribeTopic("Reading")
-//                    if (lastSettings != null) {
-//                        lastSettings.readingReminders = false
-//                        booksDao?.updateSetting(lastSettings)
-//                    }
+                    //update reminder from db
+                    lifecycleScope.launch {
+                        dao.updateReadingReminder(false)
+                    }
                 }
                 if (buyingReminder.isChecked) {
                     buyingReminder.isChecked = false
                     notifications.unsubscribeTopic("Buying")
-//                    if (lastSettings != null) {
-//                        lastSettings.buyingReminders = false
-//                        booksDao?.updateSetting(lastSettings)
-//                    }
+                    //update reminder from db
+                    lifecycleScope.launch {
+                        dao.updateBuyingReminder(false)
+                    }
                 }
 
                 binding.handleReminders.text = getString(R.string.enable_reminders)
@@ -80,10 +86,18 @@ class Settings : Fragment() {
             if(!isChecked) {
                 notifications.unsubscribeTopic("Reading")
                 binding.handleReminders.text = getString(R.string.enable_reminders)
+                //update reminder from db
+                lifecycleScope.launch {
+                    dao.updateReadingReminder(false)
+                }
             }
             else {
                 notifications.subscribeTopic("Reading")
                 binding.handleReminders.text = getString(R.string.disable_reminders)
+                //update reminder from db
+                lifecycleScope.launch {
+                    dao.updateReadingReminder(true)
+                }
             }
         }
 
@@ -91,10 +105,18 @@ class Settings : Fragment() {
             if(!isChecked) {
                 notifications.unsubscribeTopic("Buying")
                 binding.handleReminders.text = getString(R.string.enable_reminders)
+                //update reminder from db
+                lifecycleScope.launch {
+                    dao.updateBuyingReminder(false)
+                }
             }
             else {
                 notifications.subscribeTopic("Buying")
                 binding.handleReminders.text = getString(R.string.enable_reminders)
+                //update reminder from db
+                lifecycleScope.launch {
+                    dao.updateBuyingReminder(true)
+                }
             }
         }
         return binding.root

@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.android.example.booksforyou.navigation.Wishlist
 
-@Database(entities = [UserBooks::class, UserSettings::class, UserWishlist::class], version = 1, exportSchema = false)
+@Database(entities = [UserBooks::class, UserSettings::class, UserWishlist::class], version = 6, exportSchema = false)
 abstract class BooksForYouDb: RoomDatabase() {
     abstract val databaseDao: BooksForYouDao
 

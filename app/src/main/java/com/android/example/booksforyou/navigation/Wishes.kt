@@ -29,7 +29,7 @@ class Wishes {
         }
     }
 
-    fun resetWishes(userWishes: MutableList<UserWishlist>) {
+     fun resetWishes(userWishes: MutableList<UserWishlist>) {
         wishes = mutableListOf()
         for (wish in userWishes) {
             val newWish = WishlistItemViewHolder(wish.bookInfo, wish.obs)

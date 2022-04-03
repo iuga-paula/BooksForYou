@@ -12,8 +12,10 @@ import com.android.example.booksforyou.databinding.ActivityMainBinding
 import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
+import com.android.example.booksforyou.database.BooksApplication
 import com.android.example.booksforyou.database.BooksForYouDao
 import com.android.example.booksforyou.database.BooksForYouDb
 import com.android.example.booksforyou.database.UserSettings
@@ -24,6 +26,7 @@ import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.launch
 
 
 var books: AllBooks = AllBooks()
@@ -32,6 +35,7 @@ var notifications: FirebaseNotifications = FirebaseNotifications()
 var callbackManager = CallbackManager.Factory.create();
 var userId: String? = null
 var userName: String? = null
+lateinit var dao: BooksForYouDao
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -41,8 +45,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.i("Main", "reintialised books")
         MultiDex.install(this)
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        val binding =
+            DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
+        dao = (application as BooksApplication).booksDatabase.databaseDao
 
         drawerLayout = binding.drawerLayout
         FacebookSdk.sdkInitialize(applicationContext);
@@ -50,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
         val navController = this.findNavController(R.id.myNavHostFragment)
 
-        NavigationUI.setupActionBarWithNavController(this,navController, drawerLayout)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
 
         NavigationUI.setupWithNavController(binding.navView, navController)
 
@@ -64,30 +70,40 @@ class MainActivity : AppCompatActivity() {
         notifications.createChannel(
             "fcm_default_channel",
             "Reading reminder",
-        this)
+            this
+        )
 
+        lifecycleScope.launch {
+            val existsSetting = dao.hasSetting()
+            if (!existsSetting) {
+                dao.insertSetting(UserSettings(readingReminders = true, buyingReminders = true))
+                notifications.subscribeTopic("Buying")
+                notifications.subscribeTopic("Reading")
+            } else {
 
+                val currentSetting = dao.getSetting()
 
-        notifications.subscribeTopic("Reading")
-        notifications.subscribeTopic("Buying")
-//        currentSeetings = booksDao!!.getSetting()
-//        if(currentSeetings != null) {
-//            if (!currentSeetings.buyingReminders) {
-//                notifications.unsubscribeTopic("Buying")
-//            }
-//            if (!currentSeetings.readingReminders) {
-//                notifications.unsubscribeTopic("Reading")
-//            }
-//        }
-//        else {
-//            booksDao!!.insertSetting(UserSettings(userEmail = "", readingReminders = true, buyingReminders = true))
-//        }
+                if (currentSetting.buyingReminders) {
+                    notifications.subscribeTopic("Buying")
+                } else {
+                    notifications.unsubscribeTopic("Buying")
+
+                }
+
+                if (currentSetting.readingReminders) {
+                    notifications.subscribeTopic("Reading")
+                } else {
+                    notifications.unsubscribeTopic("Reading")
+                }
+            }
+        }
+
 
         val intent = intent
         val extras = intent.extras
         extras?.let {
             val link = it.getString("link")
-            link?.let{
+            link?.let {
                 navController.navigate(R.id.action_helloFragment_to_yourBooks)
             }
         }

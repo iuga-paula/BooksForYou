@@ -13,7 +13,7 @@ import com.android.example.booksforyou.wishlist
 import java.util.*
 import kotlin.collections.ArrayList
 
-class WishlistAdapter(private val mList: MutableList<WishlistItemViewHolder>,
+class WishlistAdapter(private var mList: MutableList<WishlistItemViewHolder>,
                       val viewModel: WishlistViewModel):
     RecyclerView.Adapter<WishlistAdapter.ViewHolder>(), Filterable {
 
@@ -93,21 +93,19 @@ class WishlistAdapter(private val mList: MutableList<WishlistItemViewHolder>,
     @SuppressLint("NotifyDataSetChanged")
     fun deleteWish(position: Int) {
         if(mList.size > position) {
-            mList.removeAt(position)
             viewModel.deleteWish(mList[position].bookInfo, mList[position].obs)
+           // mList.removeAt(position)
         }
         if(filteredWishList.size > position) {
             viewModel.deleteWish(filteredWishList[position].bookInfo, filteredWishList[position].obs)
-            filteredWishList.removeAt(position)
+            //filteredWishList.removeAt(position)
         }
 
-        wishlist.removeWish(position)
-        notifyDataSetChanged()
+        //wishlist.removeWish(position)
+        //notifyDataSetChanged()
 
 
 
     }
-
-
 
 }

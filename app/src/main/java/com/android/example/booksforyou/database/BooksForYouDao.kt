@@ -18,6 +18,12 @@ interface BooksForYouDao {
     @Query("DELETE FROM books_for_you_books WHERE bookId = :id")
     suspend fun deleteBookId(id: Long)
 
+    @Query("DELETE FROM books_for_you_books WHERE book_name = :name AND book_author = :author AND book_type = :type")
+    suspend fun deleteBook2(name: String, author: String, type: String)
+
+    @Query("UPDATE books_for_you_books SET book_type = \"finished\" WHERE book_name = :name AND book_author = :author")
+    suspend fun updateBookType(name: String, author: String)
+
     @Query("SELECT * FROM books_for_you_books WHERE book_type = \"in_progress\" ORDER BY book_date DESC")
      fun getAllInProgressBooks(): LiveData<MutableList<UserBooks>>
 
@@ -44,7 +50,7 @@ interface BooksForYouDao {
 
     //settings
     @Insert
-    fun insertSetting(s: UserSettings)
+    suspend fun insertSetting(s: UserSettings)
 
     @Update
     fun updateSetting(s: UserSettings)
@@ -52,17 +58,17 @@ interface BooksForYouDao {
     @Delete
     fun deleteSetting(s: UserSettings)
 
-    @Query("SELECT * FROM books_for_you_settings LIMIT 1")
-    fun getSetting(): UserSettings
+    @Query("SELECT EXISTS(SELECT * FROM books_for_you_settings)")
+    suspend fun hasSetting(): Boolean
 
-    @Query("UPDATE books_for_you_settings  SET settings_email= :email")
-    fun updateEmail(email: String)
+    @Query("SELECT * FROM books_for_you_settings LIMIT 1")
+    suspend fun getSetting(): UserSettings
 
     @Query("UPDATE books_for_you_settings  SET settings_reading_reminder= :r")
-    fun updateReadingReminder(r: Boolean)
+    suspend fun updateReadingReminder(r: Boolean)
 
     @Query("UPDATE books_for_you_settings  SET settings_buying_reminder = :r")
-    fun updateBuyingReminder(r: Boolean)
+    suspend fun updateBuyingReminder(r: Boolean)
 
 
 }

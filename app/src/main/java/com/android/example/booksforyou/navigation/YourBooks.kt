@@ -8,6 +8,7 @@ import android.view.*
 import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.android.example.booksforyou.MainActivity
 import com.android.example.booksforyou.R
@@ -15,11 +16,19 @@ import com.android.example.booksforyou.books
 import com.android.example.booksforyou.books.Book
 import com.android.example.booksforyou.books.BookAdapter
 import com.android.example.booksforyou.books.BookComparator
+import com.android.example.booksforyou.books.BookViewModel
+import com.android.example.booksforyou.database.BooksApplication
 import com.android.example.booksforyou.databinding.FragmentYourBooksBinding
 import kotlin.properties.Delegates
 
 
 class YourBooks : Fragment() {
+    private val viewModel: BookViewModel by activityViewModels {
+        BookViewModel.BookViewModelFactory(
+            (activity?.application as BooksApplication).booksDatabase.databaseDao
+        )
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,67 +45,44 @@ class YourBooks : Fragment() {
         binding.addBooks.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_yourBooks_to_addBookDialog)
         }
-        val bookModel = arguments?.getParcelable<Book>("newBook")
-        val newBook = bookModel?.let {
-            Book(
-                it.name, it.authorName, it.noPages,
-                it.type, it.date, it.photoLink
-            )
-        }
-        newBook?.let {
-            if (it.type == "finished") {
-                books.addFinishedBook(it)
-            } else {
-                books.addInProgressBook(it)
+
+         val gridFinishedView = binding.finishedBooks
+         val gridInProgressView = binding.inProgressBooks
+
+        viewModel.finishedBooks.observe(this.viewLifecycleOwner) { items ->
+            items.let {
+                books.setFinishedBooks(it)
+                var newFinishedBooks = books.getFinishedBooks()
+                if (books.getFinishedBooks().size > 0) {
+                    binding.noFinishedBooks.visibility = View.GONE
+                    //sort books
+                    newFinishedBooks = books.getFinishedBooks().sortedWith(BookComparator).reversed() as MutableList<Book>
+
+                }
+
+                val finishedBooksAdapter = BookAdapter(activity as MainActivity, newFinishedBooks, viewModel)
+                gridFinishedView.adapter = finishedBooksAdapter
+            }
+            }
+
+        viewModel.inProgressBooks.observe(this.viewLifecycleOwner) { items ->
+            items.let {
+                books.setInProgressBooks(it)
+                var newInProgressBooks = books.getInProgressBooks()
+                if (books.getInProgressBooks().size > 0) {
+                    setHasOptionsMenu(true)
+                    binding.noInProgressBooks.visibility = View.GONE
+                    newInProgressBooks = books.getInProgressBooks().sortedWith(BookComparator).reversed() as MutableList<Book>
+                }
+                else {
+                    setHasOptionsMenu(false)
+                }
+
+                val inProgressBooksAdapter =  BookAdapter(activity as MainActivity, newInProgressBooks, viewModel)
+                gridInProgressView.adapter = inProgressBooksAdapter
             }
         }
-        var finishedBooks = books.getFinishedBooks()
-        var inProgressBooks = books.getInProgressBooks()
 
-        if (finishedBooks.size > 0) {
-            binding.noFinishedBooks.visibility = View.GONE
-            //sort books
-            finishedBooks = finishedBooks.sortedWith(BookComparator).reversed() as MutableList<Book>
-        }
-        if (inProgressBooks.size > 0) {
-            binding.noInProgressBooks.visibility = View.GONE
-            //sort
-            inProgressBooks =
-                inProgressBooks.sortedWith(BookComparator).reversed() as MutableList<Book>
-        }
-
-
-        val gridFinishedView = binding.finishedBooks
-        val finishedBooksAdapter = BookAdapter(activity as MainActivity, finishedBooks)
-        gridFinishedView.isVerticalScrollBarEnabled = false
-        gridFinishedView.adapter = finishedBooksAdapter
-
-
-        val gridInProgressView = binding.inProgressBooks
-        val inProgressBooksAdapter = BookAdapter(activity as MainActivity, inProgressBooks)
-        gridInProgressView.isVerticalScrollBarEnabled = false
-        gridInProgressView.adapter = inProgressBooksAdapter
-
-//        inProgressBooks: MutableList<Book> by Delegates.observable() {
-//                property, oldValue, newValue ->
-//            val newfinishedBooksAdapter = BookAdapter(activity as MainActivity, newValue)
-//            gridFinishedView.adapter = newfinishedBooksAdapter
-//        }
-
-        Log.i("YourBooks", bookModel.toString())
-        Log.i(
-            "YourBooks", finishedBooks.size.toString() + " finished books: "
-                    + finishedBooks.toString()
-        )
-        Log.i(
-            "YourBooks", inProgressBooks.size.toString() + " in progress books: "
-                    + inProgressBooks.toString()
-        )
-
-
-        if(inProgressBooks.size > 0) {
-            setHasOptionsMenu(true)
-        }
         return binding.root
     }
 

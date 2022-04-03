@@ -28,7 +28,8 @@ import com.google.android.material.internal.ContextUtils.getActivity
 
 internal class BookAdapter(
     private val context: Context,
-    private var thisBooks: MutableList<Book>
+    private var thisBooks: MutableList<Book>,
+    private val viewModel: BookViewModel
 ) : BaseAdapter() {
     private var layoutInflater: LayoutInflater? = null
 
@@ -101,39 +102,15 @@ internal class BookAdapter(
         if (thisBooks.size > position && thisBooks[position].type != "finished") {
             // we have adapter for in progress books
             //remove the book from thisBooks
-            var book = thisBooks[position]
-            thisBooks =
-                thisBooks.filterIndexed { index, _ -> index != position } as MutableList<Book>
-            notifyDataSetChanged()
-
-            //update global books
-            books.removeInProgressBook(position)
-            book.type = "finished"
-            val date = Calendar.getInstance().time
-            val formatter = SimpleDateFormat("dd/mm/yyyy", Locale.getDefault())
-            book.date = formatter.format(date)
-            books.addFinishedBook(book)
+            val book = thisBooks[position]
+            viewModel.finishBook(book.name, book.authorName)
 
             val builder = AlertDialog.Builder(context)
             builder.setMessage("You have finished " + book.name + " book!")
                 .setTitle("Congratulations!")
-            builder.setNegativeButton("Ok"
+            builder.setNegativeButton(
+                "Ok"
             ) { dialog, _ ->
-                // User cancelled the dialog
-
-                context.let{
-                    val fragmentManager = (context as AppCompatActivity).supportFragmentManager
-                    fragmentManager.let{
-                        val currentFragment = fragmentManager.findFragmentById(R.id.yourBooks)
-                        currentFragment?.let{
-                            val fragmentTransaction = fragmentManager.beginTransaction()
-                            fragmentTransaction.detach(it)
-                            fragmentTransaction.attach(it)
-                            fragmentTransaction.commit()
-                        }
-                    }
-
-                }
 
                 dialog.dismiss()
 
@@ -151,20 +128,10 @@ internal class BookAdapter(
     private fun deleteBook(position: Int) {
         //remove book with given position from array
         if (thisBooks.size > position) {
-//                val intent = Intent(context, MainActivity::class.java).apply {
-//                    putExtra("bookType", thisBooks[position].type)
-//                    putExtra("position", position)
-//                }
-//                context.startActivity(intent)
-            if (thisBooks[position].type == "finished") {
-                books.removeFinishedBook(position)
-            } else {
-                books.removeInProgressBook(position)
-            }
-            thisBooks =
-                thisBooks.filterIndexed { index, _ -> index != position } as MutableList<Book>
-            Log.i("BookAdapter", position.toString())
-            notifyDataSetChanged()
+            viewModel.deleteBook(
+                thisBooks[position].name, thisBooks[position].authorName,
+                thisBooks[position].type
+            )
 
         }
     }

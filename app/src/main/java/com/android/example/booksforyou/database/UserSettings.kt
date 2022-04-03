@@ -9,9 +9,6 @@ class UserSettings(
     @PrimaryKey(autoGenerate = true)
     var settingId: Long = 0L,
 
-    @ColumnInfo(name = "settings_email")
-    var userEmail: String = "",
-
     @ColumnInfo(name = "settings_reading_reminder")
     var readingReminders: Boolean = true,
 
