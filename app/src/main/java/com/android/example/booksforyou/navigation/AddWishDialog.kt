@@ -7,15 +7,24 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.android.example.booksforyou.MainActivity
 import com.android.example.booksforyou.R
+import com.android.example.booksforyou.database.BooksApplication
+import com.android.example.booksforyou.database.UserWishlist
 import com.android.example.booksforyou.databinding.FragmentAddBookDialogBinding
 import com.android.example.booksforyou.databinding.FragmentAddWishBinding
 import kotlinx.android.synthetic.main.fragment_add_wish.*
 
 class AddWishDialog: Fragment() {
     private lateinit var binding: FragmentAddWishBinding
+    private val viewModel: WishlistViewModel by activityViewModels {
+        WishlistViewModel.WishlistViewModelFactory(
+            (activity?.application as BooksApplication).booksDatabase.databaseDao
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,6 +72,8 @@ class AddWishDialog: Fragment() {
             val bundle = Bundle()
             bundle.putParcelable("newWish", newWish)
 
+
+            viewModel.addNewWish(bookInfoText, observations)
             view.findNavController().navigate(R.id.action_addWishDialog_to_wishlist2, bundle)
         }
     }

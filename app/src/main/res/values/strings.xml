@@ -73,4 +73,5 @@
     <string name="facebook_client_token">b9fe4ee22082b22ac570881aa2d1914f</string>
     <string name="best_sellers">New York Times Best Sellers</string>
     <string name="current_week_s_new_york_times_best_sellers">Current week\'s New York Times best sellers</string>
+    <string name="add_new_wish">Add new wish</string>
 </resources>

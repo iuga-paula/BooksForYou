@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.booksforyou.R
+import com.android.example.booksforyou.database.BooksApplication
 import com.android.example.booksforyou.wishlist
 import java.util.*
 import kotlin.collections.ArrayList
 
-class WishlistAdapter(private val mList: MutableList<WishlistItemViewHolder>):
+class WishlistAdapter(private val mList: MutableList<WishlistItemViewHolder>,
+                      val viewModel: WishlistViewModel):
     RecyclerView.Adapter<WishlistAdapter.ViewHolder>(), Filterable {
 
     var filteredWishList:MutableList<WishlistItemViewHolder> = mutableListOf()
@@ -19,6 +22,7 @@ class WishlistAdapter(private val mList: MutableList<WishlistItemViewHolder>):
     init {
         filteredWishList = mList
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder { //  sets the views to display the items.
         val view = LayoutInflater.from(parent.context)
@@ -90,12 +94,17 @@ class WishlistAdapter(private val mList: MutableList<WishlistItemViewHolder>):
     fun deleteWish(position: Int) {
         if(mList.size > position) {
             mList.removeAt(position)
+            viewModel.deleteWish(mList[position].bookInfo, mList[position].obs)
         }
         if(filteredWishList.size > position) {
+            viewModel.deleteWish(filteredWishList[position].bookInfo, filteredWishList[position].obs)
             filteredWishList.removeAt(position)
         }
+
         wishlist.removeWish(position)
         notifyDataSetChanged()
+
+
 
     }
 

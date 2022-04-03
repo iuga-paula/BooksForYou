@@ -5,26 +5,29 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.android.example.booksforyou.MainActivity
 import com.android.example.booksforyou.R
-import com.android.example.booksforyou.databinding.FragmentAddWishBinding
 import com.android.example.booksforyou.databinding.FragmentWishlistBinding
 import com.android.example.booksforyou.wishlist
-import androidx.core.content.ContextCompat.getSystemService
-import com.android.example.booksforyou.books.Book
+import androidx.fragment.app.activityViewModels
+import com.android.example.booksforyou.database.BooksApplication
+import com.android.example.booksforyou.database.BooksForYouDb
 
 
 class Wishlist : Fragment() {
     private lateinit var binding: FragmentWishlistBinding
+    private val viewModel: WishlistViewModel by activityViewModels {
+        WishlistViewModel.WishlistViewModelFactory(
+            ((activity as MainActivity).application as BooksApplication).booksDatabase.databaseDao
+        )
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,12 +49,18 @@ class Wishlist : Fragment() {
         val newWish = addedWish?.let {
             WishlistItemViewHolder(it.bookInfo, it.obs)
         }
-        newWish?.let{
-            wishlist.addWish(it)
-        }
+//        newWish?.let{
+//            wishlist.addWish(it)
+//        }
+
 
         val recicleView = binding.wishlist
-        val adapter = WishlistAdapter(wishlist.getWishes())
+        viewModel.allItems.observe(this.viewLifecycleOwner) { items ->
+            items.let {
+                wishlist.resetWishes(it)
+            }
+        }
+        val adapter = WishlistAdapter(wishlist.getWishes(), viewModel)
         recicleView.adapter = adapter
 
 

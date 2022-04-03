@@ -27,15 +27,29 @@ class Settings : Fragment() {
         val readingReminder = binding.readingReminderSwitch
         val buyingReminder = binding.buyingReminderSwitch
 
+//        val lastSettings = booksDao?.getSetting()
+//        if (lastSettings != null) {
+//            readingReminder.isChecked = lastSettings.readingReminders
+//            buyingReminder.isChecked = lastSettings.buyingReminders
+//        }
+
         binding.handleReminders.setOnClickListener {
             if(binding.handleReminders.text == getString(R.string.enable_reminders)) {
                 if (!readingReminder.isChecked) {
                     readingReminder.isChecked = true
                     notifications.subscribeTopic("Reading")
+//                    if (lastSettings != null) {
+//                        lastSettings.readingReminders = true
+//                        booksDao?.updateSetting(lastSettings)
+//                    }
                 }
                 if (!buyingReminder.isChecked) {
                     buyingReminder.isChecked = true
                     notifications.subscribeTopic("Buying")
+//                    if (lastSettings != null) {
+//                        lastSettings.buyingReminders = true
+//                        booksDao?.updateSetting(lastSettings)
+//                    }
                 }
                 binding.handleReminders.text = getString(R.string.disable_reminders)
             }
@@ -43,10 +57,18 @@ class Settings : Fragment() {
                 if (readingReminder.isChecked) {
                     readingReminder.isChecked = false
                     notifications.unsubscribeTopic("Reading")
+//                    if (lastSettings != null) {
+//                        lastSettings.readingReminders = false
+//                        booksDao?.updateSetting(lastSettings)
+//                    }
                 }
                 if (buyingReminder.isChecked) {
                     buyingReminder.isChecked = false
                     notifications.unsubscribeTopic("Buying")
+//                    if (lastSettings != null) {
+//                        lastSettings.buyingReminders = false
+//                        booksDao?.updateSetting(lastSettings)
+//                    }
                 }
 
                 binding.handleReminders.text = getString(R.string.enable_reminders)

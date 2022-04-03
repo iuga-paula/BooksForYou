@@ -14,7 +14,8 @@
         android:fontFamily="@font/nanum_brush_script"
         android:roundIcon="@mipmap/books_for_you_ic_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BooksForYou">
+        android:theme="@style/Theme.BooksForYou"
+        android:name=".database.BooksApplication">
 
 
         <activity android:name="com.facebook.FacebookActivity"
