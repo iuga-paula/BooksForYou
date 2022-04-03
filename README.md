@@ -55,12 +55,13 @@ Major frameworks/libraries used to bootstrap BooksForYou project:
     <img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/finish_book.jpeg" alt="main_img" width="210" height="450">
  </div>
  
-#### Wishlist
+#### Wishlist &  Current weeks' New York Times best sellers
   <div>
-<img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/wishlist.jpeg" alt="main_img" width="210" height="450">
+<img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/wishlist.jpeg" alt="main_img" width="210" height="450"> &nbsp; &nbsp;
+    <img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/nytBooks.jpeg" alt="main_img" width="210" height="450">
  </div>
  
-#### Reminders settings && facebook login
+#### Reminders settings & facebook login
   <div>
 <img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/reminders.jpeg" alt="main_img" width="210" height="450"> &nbsp; &nbsp;
     <img src="https://github.com/iuga-paula/BooksForYou/blob/main/images/facebook_account.jpeg" alt="main_img" width="210" height="450">
