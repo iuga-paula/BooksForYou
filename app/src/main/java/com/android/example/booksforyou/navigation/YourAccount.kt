@@ -68,7 +68,7 @@ class YourAccount : Fragment() {
         }
 
         val loginButton = binding.loginButton
-        loginButton.setPermissions(listOf("email"))
+        loginButton.setPermissions("email")
         loginButton.fragment = this
         loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult?> {
             override fun onCancel() {

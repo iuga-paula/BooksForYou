@@ -36,10 +36,16 @@ class FirebaseNotifications:FirebaseMessagingService() {
         intent.putExtra("link", id)
 
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        val pendingIntent = getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val pendingIntent = getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
         val noti: Notification = Notification.Builder(this)
             .setContentTitle(remoteMessage.notification!!.title)
             .setContentText(remoteMessage.notification!!.body)
+            .setSmallIcon(R.drawable.ic_notification_overlay)
             .setContentIntent(pendingIntent)
             .build()
 
