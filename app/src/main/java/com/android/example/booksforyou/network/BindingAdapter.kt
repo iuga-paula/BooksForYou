@@ -17,8 +17,6 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<ApiBook>?) {
 fun bindImage(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
-        imgView.load(imgUri) {
-
-        }
+        imgView.load(imgUri)
     }
 }

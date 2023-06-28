@@ -98,10 +98,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-        val intent = intent
-        val extras = intent.extras
-        extras?.let {
+            intent.extras?.let {
             val link = it.getString("link")
             link?.let {
                 navController.navigate(R.id.action_helloFragment_to_yourBooks)
